@@ -18,8 +18,10 @@ class CreateUsersTable extends Migration
             $table->integer('role_id')->default(3);
             $table->string('name');
             $table->string('username');
+            $table->string('password');
             $table->string('email');
             $table->string('phone');
+            $table->rememberToken();
             $table->timestamps();
             //$table->foreign('role_id')->references('id')->on('role');
 

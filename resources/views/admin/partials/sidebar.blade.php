@@ -25,37 +25,41 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
+                <li class="nav-item has-treeview {{ Request::is(' admin/*')  ? 'active menu-open': '' }}">
+                    <a href="{{route('admin.dashboard')}}" class="nav-link {{ Request::is(' admin/dashboard')  ? 'active ': '' }}">
                         <i class="nav-icon fa fa-dashboard"></i>
                         <p>
-                            Starter Pages
+                           Dashboard
                             <i class="right fa fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                        <li class="nav-item " >
+                            <a href="{{route('admin.users.list')}}" class="nav-link {{ Request::is(' admin/users-list')  ? 'active ': '' }}">
                                 <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Active Page</p>
+                                <p>List users</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{ Request::is(' admin/add-user')  ? 'active ': '' }}">
                                 <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Inactive Page</p>
+                                <p>Add User</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-th"></i>
-                        <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
-                        </p>
+                    <a class="nav-link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        {{ __('Logout') }}
                     </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </nav>
