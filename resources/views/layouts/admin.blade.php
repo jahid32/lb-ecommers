@@ -45,5 +45,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
+@stack('scripts')
 </body>
 </html>

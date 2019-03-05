@@ -118,15 +118,19 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
+
+@endsection
+@push('scripts')
+
     <script type="text/javascript">
         function deleteItem(id) {
             const swalWithBootstrapButtons = swal.mixin({
                 confirmButtonClass: 'btn btn-success',
                 cancelButtonClass: 'btn btn-danger',
                 buttonsStyling: false,
-            })
+            });
 
-            swalWithBootstrapButtons({
+            swalWithBootstrapButtons.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
                 type: 'warning',
@@ -151,4 +155,4 @@
             })
         }
     </script>
-@endsection
+@endpush

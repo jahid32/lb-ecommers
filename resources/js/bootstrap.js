@@ -13,10 +13,10 @@ try {
 
     require('bootstrap');
     require('admin-lte');
-    require('sweetalert2');
     var dt      = require( 'datatables.net' )();
 } catch (e) {}
-
+import swal from 'sweetalert2';
+window.swal = swal;
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

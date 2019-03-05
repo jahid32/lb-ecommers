@@ -44,7 +44,7 @@
 @include('front.partials.footer')
 
 <!-- Popup Subscribe Section Start -->
-@include('front.partials.components.popup')
+{{--@include('front.partials.components.popup')--}}
 
 
 <!-- JS

@@ -8,6 +8,8 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import '~admin-lte/build/scss/AdminLTE';
+@import "~sweetalert2/src/sweetalert2";
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
 @import "~font-awesome/scss/font-awesome";
 
 .navbar-laravel {
