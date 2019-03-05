@@ -13,6 +13,7 @@ try {
 
     require('bootstrap');
     require('admin-lte');
+    require('sweetalert2');
     var dt      = require( 'datatables.net' )();
 } catch (e) {}
 
