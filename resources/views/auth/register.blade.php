@@ -57,10 +57,26 @@
                                     @endif
                                 </div>
                                 <div class="col-12 mb-30">
+                                    <input type="text"  placeholder="Your user name here" class="{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+                                    @if ($errors->has('username'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                                <div class="col-12 mb-30">
                                     <input type="email" name="email" placeholder="Your email here"  class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"  value="{{ old('email') }}" required>
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                                <div class="col-12 mb-30">
+                                    <input type="test" name="phone" placeholder="Your phone here"  class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"  value="{{ old('phone') }}" required>
+                                    @if ($errors->has('phone'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                     @endif
                                 </div>

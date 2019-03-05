@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Validator;
 class AdminController extends Controller
 {
     function dashboard(){
@@ -30,7 +30,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+      return view('admin.create');
     }
 
     /**
@@ -41,7 +41,23 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      Validator::make($request->all(), [
+        'name' => ['required', 'string', 'max:255'],
+        'username' => ['required', 'string', 'min:6', 'max:14'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'phone' => ['required', 'string', 'phone', 'min:10',  'max:11', 'unique:users'],
+        'password' => ['required', 'string', 'min:6', 'confirmed'],
+      ]);
+      
+      $user = new User();
+      $user->name = request('name');
+      $user->username = request('username');
+      $user->email = request('email');
+      $user->phone = request('phone');
+      $user->password = request('password');
+      $user->role_id = 2;
+      $user->save();
+      return redirect()->route('admin.users.list')->with('success', 'User Create Successfully');
     }
 
     /**

@@ -41,7 +41,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ Request::is(' admin/add-user')  ? 'active ': '' }}">
+                            <a href="{{route('admin.add.user')}}" class="nav-link {{ Request::is(' admin/add-user')  ? 'active ': '' }}">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>Add User</p>
                             </a>
