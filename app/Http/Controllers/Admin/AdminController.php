@@ -57,7 +57,7 @@ class AdminController extends Controller
       $user->password = request('password');
       $user->role_id = 2;
       $user->save();
-      return redirect()->route('admin.users.list')->with('success', 'User Create Successfully');
+      return redirect()->route('admin.users.index')->with('success', 'User Create Successfully');
     }
 
     /**
@@ -79,7 +79,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.edit',compact('user'));
     }
 
     /**
@@ -91,7 +92,14 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'phone', 'min:10',  'max:11'],
+          ]);
+          User::where('id', $id)
+            ->update(['name' => $request->name,'phone' => $request->phone]);
+          
+          return redirect()->route('admin.users.index')->with('success', 'User Create Successfully');
     }
 
     /**
@@ -102,6 +110,8 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id)->delete();
+        return redirect()->route('admin.users.index')->with('success', 'User Deleted Successfully');
+
     }
 }

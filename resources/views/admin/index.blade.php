@@ -58,6 +58,11 @@
                                                         aria-label="CSS grade: activate to sort column ascending"
                                                         style="width: 101px;">Email
                                                     </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending"
+                                                        style="width: 101px;">Action
+                                                    </th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -69,6 +74,19 @@
                                                     <td>{{$user->username}}</td>
                                                     <td>{{$user->phone}}</td>
                                                     <td>{{$user->email}}</td>
+                                                     <td>
+                                                        <a href="{{route('admin.users.edit',$user->id)}}" class='btn btn-info'>Edit</a>
+                                                        <button class="btn btn-danger" type="button" onclick="deleteItem({{ $user->id }})">
+                                                             <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        </button>
+                                                        <form id="delete-form-{{ $user->id }}" action="{{route('admin.users.destroy',$user->id)}}" method="post"
+                                                            style="display:none;">
+                                                            
+                                                           @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                     </td>
+                                                     
                                                 </tr>
                                                 @endforeach
                                                 </tbody>
@@ -79,6 +97,7 @@
                                                     <th rowspan="1" colspan="1"> User Name</th>
                                                     <th rowspan="1" colspan="1">Phone</th>
                                                     <th rowspan="1" colspan="1">Email</th>
+                                                    <th rowspan="1" colspan="1">Action</th>
                                                 </tr>
                                                 </tfoot>
                                             </table>
@@ -99,4 +118,37 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
+    <script type="text/javascript">
+        function deleteItem(id) {
+            const swalWithBootstrapButtons = swal.mixin({
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false,
+            })
+
+            swalWithBootstrapButtons({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    document.getElementById('delete-form-'+id).submit();
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons(
+                        'Cancelled',
+                        'Your data is safe :)',
+                        'error'
+                    )
+                }
+            })
+        }
+    </script>
 @endsection

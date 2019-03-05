@@ -23,7 +23,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="{{route('admin.save.user')}}" method="post">
+                <form class="form-horizontal" action="{{route('admin.users.store')}}" method="post">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
