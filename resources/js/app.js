@@ -31,11 +31,4 @@ require('./bootstrap');
 // const app = new Vue({
 //     el: '#app'
 // });
-$('#UserList').DataTable({
-    "paging": true,
-    "lengthChange": true,
-    "searching": false,
-    "ordering": true,
-    "info": true,
-    "autoWidth": false
-});
+

@@ -33,61 +33,41 @@
                                                    role="grid" aria-describedby="example1_info">
                                                 <thead>
                                                 <tr role="row">
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="example1"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Rendering engine: activate to sort column descending"
-                                                        style="width: 170px;">User Id
-                                                    </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example1"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Browser: activate to sort column ascending"
-                                                        style="width: 219px;">Full Name
-                                                    </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example1"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Platform(s): activate to sort column ascending"
-                                                        style="width: 194px;"> User Name
-                                                    </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example1"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Engine version: activate to sort column ascending"
-                                                        style="width: 143px;">Phone
-                                                    </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example1"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="CSS grade: activate to sort column ascending"
-                                                        style="width: 101px;">Email
-                                                    </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example1"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="CSS grade: activate to sort column ascending"
-                                                        style="width: 101px;">Action
-                                                    </th>
+                                                    <th>User Id</th>
+                                                    <th>Full Name</th>
+                                                    <th> User Name</th>
+                                                    <th>Phone</th>
+                                                    <th>Email</th>
+                                                    <th>Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 @foreach ($users as $key=>$user)
 
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">{{$user->id}}</td>
-                                                    <td>{{$user->name}}</td>
-                                                    <td>{{$user->username}}</td>
-                                                    <td>{{$user->phone}}</td>
-                                                    <td>{{$user->email}}</td>
-                                                     <td>
-                                                        <a href="{{route('admin.users.edit',$user->id)}}" class='btn btn-info'>Edit</a>
-                                                        <button class="btn btn-danger" type="button" onclick="deleteItem({{ $user->id }})">
-                                                             <i class="fa fa-trash" aria-hidden="true"></i>
-                                                        </button>
-                                                        <form id="delete-form-{{ $user->id }}" action="{{route('admin.users.destroy',$user->id)}}" method="post"
-                                                            style="display:none;">
-                                                            
-                                                           @csrf
-                                                            @method('DELETE')
-                                                        </form>
-                                                     </td>
-                                                     
-                                                </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1">{{$user->id}}</td>
+                                                        <td>{{$user->name}}</td>
+                                                        <td>{{$user->username}}</td>
+                                                        <td>{{$user->phone}}</td>
+                                                        <td>{{$user->email}}</td>
+                                                        <td>
+                                                            <a href="{{route('admin.users.edit',$user->id)}}"
+                                                               class='btn btn-info'>Edit</a>
+                                                            <button class="btn btn-danger" type="button"
+                                                                    onclick="deleteItem({{ $user->id }})">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </button>
+                                                            <form id="delete-form-{{ $user->id }}"
+                                                                  action="{{route('admin.users.destroy',$user->id)}}"
+                                                                  method="post"
+                                                                  style="display:none;">
+
+                                                                @csrf
+                                                                @method('DELETE')
+                                                            </form>
+                                                        </td>
+
+                                                    </tr>
                                                 @endforeach
                                                 </tbody>
                                                 <tfoot>
@@ -123,6 +103,17 @@
 @push('scripts')
 
     <script type="text/javascript">
+        window.addEventListener('load', function () {
+            $('#UserList').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+
         function deleteItem(id) {
             const swalWithBootstrapButtons = swal.mixin({
                 confirmButtonClass: 'btn btn-success',
@@ -141,7 +132,7 @@
             }).then((result) => {
                 if (result.value) {
                     event.preventDefault();
-                    document.getElementById('delete-form-'+id).submit();
+                    document.getElementById('delete-form-' + id).submit();
                 } else if (
                     // Read more about handling dismissals
                     result.dismiss === swal.DismissReason.cancel

@@ -10,10 +10,10 @@ window._ = require('lodash');
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
-
     require('bootstrap');
     require('admin-lte');
     var dt      = require( 'datatables.net' )();
+    require('datatables.net-bs4/js/dataTables.bootstrap4.min');
 } catch (e) {}
 import swal from 'sweetalert2';
 window.swal = swal;
