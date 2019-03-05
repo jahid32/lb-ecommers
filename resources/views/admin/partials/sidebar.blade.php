@@ -35,13 +35,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item " >
-                            <a href="{{route('admin.users.list')}}" class="nav-link {{ Request::is(' admin/users-list')  ? 'active ': '' }}">
+                            <a href="{{route('admin.users.index')}}" class="nav-link {{ Request::is(' admin/users-list')  ? 'active ': '' }}">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>List users</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('admin.add.user')}}" class="nav-link {{ Request::is(' admin/add-user')  ? 'active ': '' }}">
+                            <a href="{{route('admin.users.create')}}" class="nav-link {{ Request::is(' admin/add-user')  ? 'active ': '' }}">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>Add User</p>
                             </a>
