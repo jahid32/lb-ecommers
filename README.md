@@ -4,5 +4,5 @@
 3. Copy .env.example to .env Update your Database Information.
 4. Run `php artisan key:generate.`
 5. Run `php artisan migrate:fresh --seed`
-6. For FontEnd Resourse run `npm install`
+6. For FontEnd Recourse run `npm install`
 7. For Auto compile and watch run: `npm run watch`
